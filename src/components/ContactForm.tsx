@@ -9,7 +9,7 @@ import axios from 'axios';
 const API_URL =
   process.env.NEXT_PUBLIC_ENQUIRY_API_URL ||
   'https://svra-tms-native-latest.onrender.com/api/public/enquiry';
-const ENTITY_CODE = 'TECH';
+const ENTITY_CODE = process.env.NEXT_PUBLIC_ENTITY_CODE || 'TECH';
 
 const RATE_LIMIT_MAX = 3;
 const RATE_LIMIT_MS = 60 * 60 * 1000;
