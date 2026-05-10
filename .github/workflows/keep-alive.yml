@@ -1,0 +1,67 @@
+name: Keep Backend Alive (Supabase + Render)
+
+# Runs every 4 days at 08:00 UTC — well within Supabase's 7-day inactivity limit.
+# Also prevents Render free-tier cold starts during business hours.
+on:
+  schedule:
+    - cron: "0 8 */4 * *"
+  workflow_dispatch: # allow manual trigger from GitHub Actions UI
+
+jobs:
+  ping:
+    name: Ping SVRA TMS Backend
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Wake up Render service (GET /)
+        id: wake
+        run: |
+          echo "Pinging backend at $(date -u)"
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            --max-time 60 \
+            --retry 3 \
+            --retry-delay 10 \
+            --retry-all-errors \
+            https://svra-tms-native-latest.onrender.com/)
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+          echo "HTTP status: $STATUS"
+
+      - name: Ping health endpoint (triggers DB query)
+        id: health
+        run: |
+          STATUS=$(curl -s -o /tmp/health.json -w "%{http_code}" \
+            --max-time 30 \
+            https://svra-tms-native-latest.onrender.com/actuator/health 2>/dev/null || \
+          curl -s -o /tmp/health.json -w "%{http_code}" \
+            --max-time 30 \
+            https://svra-tms-native-latest.onrender.com/api/health 2>/dev/null || echo "000")
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+          echo "Health status: $STATUS"
+          cat /tmp/health.json 2>/dev/null || true
+
+      - name: Ping public enquiry endpoint (generates DB activity)
+        id: enquiry
+        run: |
+          STATUS=$(curl -s -o /tmp/enquiry.json -w "%{http_code}" \
+            --max-time 30 \
+            -X GET \
+            https://svra-tms-native-latest.onrender.com/api/public/enquiry 2>/dev/null || echo "000")
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+          echo "Enquiry endpoint status: $STATUS"
+
+      - name: Report results
+        run: |
+          echo "============================================"
+          echo "Keep-alive ping completed at $(date -u)"
+          echo "Wake:    ${{ steps.wake.outputs.status }}"
+          echo "Health:  ${{ steps.health.outputs.status }}"
+          echo "Enquiry: ${{ steps.enquiry.outputs.status }}"
+          echo "============================================"
+          # Fail the job if the backend is completely unreachable
+          if [ "${{ steps.wake.outputs.status }}" = "000" ] && \
+             [ "${{ steps.health.outputs.status }}" = "000" ]; then
+            echo "ERROR: Backend is completely unreachable. Check Render + Supabase dashboards."
+            exit 1
+          fi
+          echo "Backend is alive."
