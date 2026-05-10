@@ -214,7 +214,7 @@ aws route53 change-resource-record-sets \
 | Variable | Default in code | Purpose |
 |---|---|---|
 | `NEXT_PUBLIC_ENQUIRY_API_URL` | `https://svra-tms-native-latest.onrender.com/api/public/enquiry` | Contact form API |
-| `NEXT_PUBLIC_ENTITY_CODE` | `SVRA-TECH` | Form payload identifier |
+| `NEXT_PUBLIC_ENTITY_CODE` | `TECH` | Form payload identifier |
 
 ---
 

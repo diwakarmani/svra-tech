@@ -31,7 +31,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 | Variable | Default | Description |
 |---|---|---|
 | `NEXT_PUBLIC_ENQUIRY_API_URL` | `https://svra-tms-native-latest.onrender.com/api/public/enquiry` | Contact form API endpoint |
-| `NEXT_PUBLIC_ENTITY_CODE` | `SVRA-TECH` | Entity code sent with every enquiry |
+| `NEXT_PUBLIC_ENTITY_CODE` | `TECH` | Entity code sent with every enquiry |
 
 Both variables have safe defaults so the app runs without a `.env.local` file.
 
