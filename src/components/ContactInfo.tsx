@@ -8,13 +8,13 @@ const info = [
   {
     icon: MapPin,
     label: 'Address',
-    value: 'Wilmington, DE, USA',
+    value: 'Challapalli, AP, India',
   },
   {
     icon: Phone,
     label: 'Phone',
-    value: '302-596-1418',
-    href: 'tel:3025961418',
+    value: '+91 63014 44782',
+    href: 'tel:+916301444782',
   },
   {
     icon: Mail,

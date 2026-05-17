@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "SVRA Technology Solutions – Guiding You to the Best IT Solutions",
   description:
-    "SVRA Technology Solutions delivers managed IT services including security, network solutions, remote support, and app development. Based in Wilmington, DE. Available 24/7.",
+    "SVRA Technology Solutions delivers managed IT services including security, network solutions, remote support, and app development. Based in Challapalli, AP, India. Available 24/7.",
   keywords: [
     "IT solutions",
     "managed IT",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     "cybersecurity",
     "remote support",
     "app development",
-    "Wilmington DE",
+    "Challapalli AP India",
     "SVRA Technology",
   ],
   openGraph: {

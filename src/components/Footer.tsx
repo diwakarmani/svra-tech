@@ -43,10 +43,10 @@ const Footer = () => {
           <div>
             <h5 className="text-lg font-bold mb-3">Contact</h5>
             <address className="not-italic space-y-2 text-sm text-gray-400">
-              <p>Wilmington, DE, USA</p>
+              <p>Challapalli, AP, India</p>
               <p className="pt-1">
-                <a href="tel:3025961418" className="hover:text-white transition">
-                  302-596-1418
+                <a href="tel:+916301444782" className="hover:text-white transition">
+                  +91 63014 44782
                 </a>
               </p>
               <p>

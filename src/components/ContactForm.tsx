@@ -16,9 +16,9 @@ const RATE_LIMIT_MS = 60 * 60 * 1000;
 const LS_KEY = 'svra_tech_enquiry_ts';
 
 const COUNTRY_CODES = [
+  { code: '+91',  label: 'IN (+91)' },
   { code: '+1',   label: 'US/CA (+1)' },
   { code: '+44',  label: 'UK (+44)' },
-  { code: '+91',  label: 'IN (+91)' },
   { code: '+61',  label: 'AU (+61)' },
   { code: '+971', label: 'UAE (+971)' },
   { code: '+65',  label: 'SG (+65)' },
@@ -66,7 +66,7 @@ const ContactForm = () => {
     firstName: '',
     lastName: '',
     email: '',
-    countryCode: '+1',
+    countryCode: '+91',
     phone: '',
     subject: '',
     description: '',
@@ -104,8 +104,8 @@ const ContactForm = () => {
       const payload = {
         name: fullName,
         email: formData.email.trim(),
-        phone: formData.phone ? `${formData.countryCode}${formData.phone.trim()}` : undefined,
-        subject: formData.subject.trim() || `Enquiry from ${fullName}`,
+        phone: `${formData.countryCode}${formData.phone.trim()}`,
+        subject: formData.subject.trim(),
         description: formData.description.trim(),
         entityCode: ENTITY_CODE,
       };
@@ -123,7 +123,7 @@ const ContactForm = () => {
         firstName: '',
         lastName: '',
         email: '',
-        countryCode: '+1',
+        countryCode: '+91',
         phone: '',
         subject: '',
         description: '',
@@ -258,7 +258,7 @@ const ContactForm = () => {
                     required
                     value={formData.firstName}
                     onChange={handleChange}
-                    placeholder="Jane"
+                    placeholder="Suresh"
                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400"
                   />
                 </div>
@@ -270,7 +270,7 @@ const ContactForm = () => {
                     required
                     value={formData.lastName}
                     onChange={handleChange}
-                    placeholder="Smith"
+                    placeholder="Sharma"
                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400"
                   />
                 </div>
@@ -285,17 +285,18 @@ const ContactForm = () => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="jane@company.com"
+                  placeholder="suresh@company.in"
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400"
                 />
               </div>
 
               {/* Phone */}
               <div>
-                <label className="block text-sm font-medium mb-2">Phone Number</label>
+                <label className="block text-sm font-medium mb-2">Phone Number *</label>
                 <div className="flex gap-2">
                   <select
                     name="countryCode"
+                    required
                     value={formData.countryCode}
                     onChange={handleChange}
                     className="px-3 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400 bg-white text-gray-900 text-sm"
@@ -307,9 +308,10 @@ const ContactForm = () => {
                   <input
                     type="tel"
                     name="phone"
+                    required
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="302-596-1418"
+                    placeholder="63014 44782"
                     className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400"
                   />
                 </div>
@@ -317,10 +319,11 @@ const ContactForm = () => {
 
               {/* Subject */}
               <div>
-                <label className="block text-sm font-medium mb-2">Subject</label>
+                <label className="block text-sm font-medium mb-2">Subject *</label>
                 <input
                   type="text"
                   name="subject"
+                  required
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder="e.g. Network Setup, Security Audit, App Development…"

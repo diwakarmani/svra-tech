@@ -30,12 +30,12 @@ const ContactSection = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-10 text-sm text-gray-400">
             <div className="flex items-center gap-2">
               <MapPin size={18} style={{ color: '#FFC90E' }} />
-              <span>Wilmington, DE</span>
+              <span>Challapalli, AP, India</span>
             </div>
             <div className="flex items-center gap-2">
               <Phone size={18} style={{ color: '#FFC90E' }} />
-              <a href="tel:3025961418" className="hover:text-white transition">
-                302-596-1418
+              <a href="tel:+916301444782" className="hover:text-white transition">
+                +91 63014 44782
               </a>
             </div>
             <div className="flex items-center gap-2">
