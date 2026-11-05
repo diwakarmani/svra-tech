@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import axios from 'axios';
+import { submitEnquiry, warmUpBackend, EnquiryError } from '@/lib/submitEnquiry';
 
 const API_URL =
   process.env.NEXT_PUBLIC_ENQUIRY_API_URL ||
@@ -76,6 +76,10 @@ const ContactForm = () => {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [result, setResult] = useState<SubmitResult | null>(null);
   const [errorMsg, setErrorMsg] = useState('');
+  const [attemptNote, setAttemptNote] = useState('');
+
+  // Wake the backend while the visitor fills in the form
+  useEffect(() => { warmUpBackend(API_URL); }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -97,6 +101,7 @@ const ContactForm = () => {
 
     setStatus('loading');
     setErrorMsg('');
+    setAttemptNote('');
 
     const fullName = `${formData.firstName.trim()} ${formData.lastName.trim()}`.trim();
 
@@ -110,12 +115,13 @@ const ContactForm = () => {
         entityCode: ENTITY_CODE,
       };
 
-      const res = await axios.post(API_URL, payload, {
-        timeout: 20_000,
-        headers: { 'Content-Type': 'application/json' },
-      });
+      const res = await submitEnquiry<{ data?: { ticketNumber?: string; message?: string } }>(
+        API_URL,
+        payload,
+        n => setAttemptNote(`Server is waking up — retrying (attempt ${n} of 3)…`),
+      );
 
-      const data = res.data?.data;
+      const data = res?.data;
       recordSubmission();
       setResult({ ticketNumber: data?.ticketNumber ?? '', message: data?.message ?? '' });
       setStatus('success');
@@ -131,12 +137,11 @@ const ContactForm = () => {
       });
     } catch (err: unknown) {
       setStatus('error');
-      if (axios.isAxiosError(err)) {
-        const msg = err.response?.data?.message || err.message;
-        setErrorMsg(msg || 'Something went wrong. Please try again.');
-      } else {
-        setErrorMsg('Network error. Please check your connection and try again.');
-      }
+      setErrorMsg(
+        err instanceof EnquiryError
+          ? err.message
+          : 'Something went wrong. Please try again.',
+      );
     }
   };
 
@@ -345,6 +350,12 @@ const ContactForm = () => {
                 />
               </div>
 
+              {status === 'loading' && (
+                <p className="text-sm text-gray-600">
+                  {attemptNote || 'Sending your enquiry… the first request can take up to a minute while our server wakes up.'}
+                </p>
+              )}
+
               {status === 'error' && (
                 <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700">
                   <AlertCircle size={18} className="shrink-0 mt-0.5" />
@@ -360,7 +371,7 @@ const ContactForm = () => {
               >
                 {status === 'loading' ? (
                   <>
-                    <Loader2 size={18} className="animate-spin" /> Submitting…
+                    <Loader2 size={18} className="animate-spin" /> {attemptNote ? 'Retrying…' : 'Submitting…'}
                   </>
                 ) : (
                   'Submit Enquiry'
