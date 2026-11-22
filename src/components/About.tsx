@@ -66,10 +66,10 @@ const About = () => {
               <span style={{ color: '#FFC90E' }}>Believe</span>
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed">
-              Experience the advantages of managed IT solutions with SVRA Technology Solutions.
+              Experience the advantages of managed IT solutions with SVRA Technologies Private Limited.
               Whether on-site or remote, we&apos;re here for you 24/7, with your satisfaction as
               our top priority. As a growing business, you depend on your systems every day, so
-              eliminate downtime with SVRA Technology Solutions. We provide a comprehensive range
+              eliminate downtime with SVRA Technologies Private Limited. We provide a comprehensive range
               of IT services at highly affordable rates and take pride in being proactive, not
               reactive.
             </p>

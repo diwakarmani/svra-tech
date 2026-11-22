@@ -1,4 +1,4 @@
-# SVRA Tech – Infrastructure & Migration Record
+# SVRA Technologies Private Limited – Infrastructure & Migration Record
 
 > **Last updated:** 2026-05-10  
 > **Migration:** AWS S3 + CloudFront → Vercel  

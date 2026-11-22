@@ -11,7 +11,7 @@ const Hero = () => {
       {/* Background Image */}
       <Image
         src="/images/home.webp"
-        alt="SVRA Technology Solutions"
+        alt="SVRA Technologies Private Limited"
         fill
         priority
         className="object-cover"

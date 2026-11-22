@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SVRA Technology Solutions – Guiding You to the Best IT Solutions",
+  title: "SVRA Technologies Private Limited – Guiding You to the Best IT Solutions",
   description:
-    "SVRA Technology Solutions delivers managed IT services including security, network solutions, remote support, and app development. Based in Challapalli, AP, India. Available 24/7.",
+    "SVRA Technologies Private Limited delivers managed IT services including security, network solutions, remote support, and app development. Based in Challapalli, AP, India. Available 24/7.",
   keywords: [
     "IT solutions",
     "managed IT",
@@ -24,14 +24,14 @@ export const metadata: Metadata = {
     "remote support",
     "app development",
     "Challapalli AP India",
-    "SVRA Technology",
+    "SVRA Technologies",
   ],
   openGraph: {
-    title: "SVRA Technology Solutions",
+    title: "SVRA Technologies Private Limited",
     description:
       "Customized IT solutions tailored to your business goals. Security, networking, remote support, and app development.",
     url: "https://svra-tech.com",
-    siteName: "SVRA Technology Solutions",
+    siteName: "SVRA Technologies Private Limited",
     type: "website",
   },
 };

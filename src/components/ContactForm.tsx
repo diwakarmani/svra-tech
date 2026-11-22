@@ -168,7 +168,7 @@ const ContactForm = () => {
       >
         <h1 className="text-4xl md:text-5xl font-semibold leading-tight">
           Get in Touch with<br />
-          <span style={{ color: '#FFC90E' }}>SVRA Technology Solutions</span>
+          <span style={{ color: '#FFC90E' }}>SVRA Technologies Private Limited</span>
         </h1>
         <p className="text-lg mt-4 mb-12 text-white/90">
           Tell us about your IT needs — we&apos;ll get back to you within one business day.

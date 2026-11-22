@@ -17,7 +17,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <h5 className="text-lg font-bold mb-3">
-              <span style={{ color: '#FFC90E' }}>SVRA</span> Technology Solutions
+              <span style={{ color: '#FFC90E' }}>SVRA</span> Technologies Private Limited
             </h5>
             <p className="text-sm text-gray-400 mb-4">
               Customized, proactive managed IT services — security, networking, remote support,
@@ -88,7 +88,7 @@ const Footer = () => {
           className="border-t border-gray-700 mt-12 pt-8 text-sm text-gray-500 flex flex-col sm:flex-row items-center justify-between gap-2"
         >
           <span>
-            © {new Date().getFullYear()} SVRA Technology Solutions. All rights reserved.
+            © {new Date().getFullYear()} SVRA Technologies Private Limited. All rights reserved.
           </span>
           <span>
             <Link href="/contact" className="hover:text-gray-300 transition">

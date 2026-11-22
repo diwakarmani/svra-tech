@@ -69,7 +69,7 @@ const Navbar = () => {
           onClick={() => handleHashClick('')}
         >
           <span style={{ color: '#FFC90E' }}>SVRA</span>
-          <span className="text-black"> Technology Solutions</span>
+          <span className="text-black"> Technologies Pvt Ltd</span>
         </Link>
 
         <nav>
@@ -113,7 +113,7 @@ const Navbar = () => {
             onClick={() => handleHashClick('')}
           >
             <span style={{ color: '#FFC90E' }}>SVRA</span>
-            <span className="text-black"> Tech</span>
+            <span className="text-black"> Technologies</span>
           </Link>
           <button
             type="button"

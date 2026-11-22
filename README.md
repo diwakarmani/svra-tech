@@ -1,4 +1,4 @@
-# SVRA Technology Solutions – Landing Page
+# SVRA Technologies Private Limited – Landing Page
 
 Modern Next.js landing page for [svra-tech.com](https://svra-tech.com), migrated from the legacy HTML/CSS site hosted on AWS S3.
 
